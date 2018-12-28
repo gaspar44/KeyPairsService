@@ -2,16 +2,20 @@ apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'maven'
 apply plugin: 'eclipse'
+//apply plugin : 'signing'
 
 repositories {
     mavenCentral()
 }
 
+group = "com.github.gaspar44"
+archivesBaseName = "KeyPairsService"
+version = "1.0.0-BETA"
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-//    compile "joda-time:joda-time:2.2"
 	compile 'javax.inject:javax.inject:1'
     compile 'javax.enterprise:cdi-api:1.2'
     
@@ -25,4 +29,52 @@ dependencies {
     compile 'org.jboss.weld:weld-core:2.3.4.Final'
     
     testCompile 'junit:junit:4.12'
+}
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'KeyPairsService'
+                packaging 'war'
+                description ' A sample WAR publish'
+                url 'https://github.com/gaspar44/KeyPairsService'
+
+                scm {
+                    connection 'scm:git:git://github.com/gaspar44/KeyPairsService.git'
+                    developerConnection 'scm:git:ssh://github.com/gaspar44/KeyPairsService.git'
+                    url 'https://github.com/gaspar44/KeyPairsService'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'gaspar44'
+                        name = "Gaspar Hermán"
+                        email = "gaspar.herman@safelayer.com"
+                    }
+                }
+
+            }
+
+        }
+    }
 }
