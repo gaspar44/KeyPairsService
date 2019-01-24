@@ -1,6 +1,10 @@
 #!/bin/bash
-
-if [ "$TRAVIS_BRANCH" = 'master' ]; then
-	openssl aes-256-cbc -K $encrypted_9558564ad590_key -iv $encrypted_9558564ad590_iv -in secret.gpg.enc -out secret.gpg -d
-	gradle clean uploadArchvies -PossrhUsername=${SONATYPE_USERNAME} -PossrhPassword=${SONATYPE_PASSWORD} -Psigning.keyId=${GPG_KEY_ID} -Psigning.password=${GPG_KEY_PASSPHRASE} -Psigning.secretKeyRingFile=secret.gpg
+if [[ "$TRAVIS_BRANCH" = 'master' ]]; then
+	sed -i "s/REPLACE_BY_RELEASE/${release}/g" gradle.properties
+	sed -i "s/REPLACE_BY_SONATYPE_USERNAME/${SONATYPE_USERNAME}/g" gradle.properties
+	sed -i "s/REPLACE_BY_SONATYPE_PASSWORD/${SONATYPE_PASSWORD}/g" gradle.properties
+	sed -i "s/REPLACE_BY_GPG_KEY_ID/${GPG_KEY_ID}/g" gradle.properties
+	sed -i "s/REPLACE_BY_GPG_KEY_PASSPHRASE/${GPG_KEY_PASSPHRASE}/g" gradle.properties
+	
+	gradle clean uploadArchives
 fi
