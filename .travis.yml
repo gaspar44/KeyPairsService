@@ -4,8 +4,7 @@ jdk:
 deploy:
   - provider: script
   script: bash ./deploy.sh
-  on:
-    branch: master
+
 env:
   global:
   - release=false
