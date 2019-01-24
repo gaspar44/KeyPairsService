@@ -6,6 +6,27 @@
   <artifactId>KeyPairsService</artifactId>
   <version>1.0.0-BETA</version>
   <packaging>war</packaging>
+  <name>KeyPairsService</name>
+  <description>A sample WAR publish</description>
+  <url>https://github.com/gaspar44/KeyPairsService</url>
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>gaspar44</id>
+      <name>Gaspar Hermán</name>
+      <email>gaspar.herman@safelayer.com</email>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git://github.com/gaspar44/KeyPairsService.git</connection>
+    <developerConnection>scm:git:ssh://github.com/gaspar44/KeyPairsService.git</developerConnection>
+    <url>https://github.com/gaspar44/KeyPairsService</url>
+  </scm>
   <dependencies>
     <dependency>
       <groupId>javax.inject</groupId>
