@@ -2,8 +2,8 @@ language: java
 jdk:
 - openjdk8
 deploy:
-  - provider: script
-  - script: bash ./deploy.sh
+  - provider: bash ./deploy.sh
+  #- script: bash ./deploy.sh
 
 env:
   global:
