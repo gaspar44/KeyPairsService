@@ -6,4 +6,3 @@ gradlew.bat
 bin/
 /build/
 target/
-gradle.properties
