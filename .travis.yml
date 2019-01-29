@@ -12,6 +12,4 @@ env:
 before_install:
 - openssl aes-256-cbc -K $encrypted_9558564ad590_key -iv $encrypted_9558564ad590_iv
   -in secret.gpg.enc -out ~\/secret.gpg -d
-- openssl aes-256-cbc -K $encrypted_9558564ad590_key -iv $encrypted_9558564ad590_iv
-  -in secret.gpg.enc -out secret.gpg -d
 - "./deploy.sh"
